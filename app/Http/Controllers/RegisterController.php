@@ -9,6 +9,7 @@ use Session;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Mail\MailSend;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -29,17 +30,20 @@ class RegisterController extends Controller
             'verify_key' => $str
         ]);
 
+        // Set timezone to UTC+7
+        $datetime = Carbon::now('Asia/Jakarta')->format('d-m-Y H:i:s');
+
         $details = [
             'username' => $request->username,
             'role' => "user",
             'website' => 'www.melali.com',
-            'datetime' => date('d-m-Y H:i:s'),
+            'datetime' => $datetime,
             'url' => request()->getHttpHost().'/register/verify/'.$str
         ];
 
         Mail::to($request->email)->send(new MailSend($details));
 
-        Session::flash('message', 'Link verifikasi telah dikrim ke Email Anda. Silahkan Cek Email Anda untuk Mengaktifkan Akun');
+        Session::flash('message', 'Link verifikasi telah dikirim ke Email Anda. Silahkan Cek Email Anda untuk Mengaktifkan Akun');
         return redirect('register');
     }
     
@@ -56,7 +60,7 @@ class RegisterController extends Controller
             ]);
             
             return "Verifikasi Berhasil. Akun Anda sudah aktif.";
-        }else{
+        } else {
             return "Key tidak valid!";
         }
     }
