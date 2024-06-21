@@ -10,7 +10,7 @@
     <div class="bg-bgCustom flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div class="flex flex-col items-center mb-6">
             <a href="index.html" class="flex items-center text-2xl font-semibold text-gray-900 dark:text-white">
-            <img src="img/logo.png" alt="logo" style="width: 199px; height: 66px; margin-top: 20px;">
+            <img src="img/logo.png" alt="logo" style="width: 199px; height: 66px; margin-top: 20px; margin-right: 30px;">
             <!-- Melali -->
             </a>
         </div>

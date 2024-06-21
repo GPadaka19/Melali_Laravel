@@ -12,10 +12,9 @@
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="img/logo.png" class="h-auto w-48" alt="Melali logo">
-        <span class="self-center text-4xl font-semibold whitespace-nowrap dark:text-white">Melali</span>
     </a>
     <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-        <a href="{{ route('register') }}"><button type="button"  class="border-2 text-white bg-orgCustom hover:bg-transparent hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-8 py-3 ml-4 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <a href="{{ route('login') }}"><button type="button"  class="border-2 text-white bg-orgCustom hover:bg-transparent hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-8 py-3 ml-4 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Sign In
         </button>
         </a>
@@ -33,7 +32,7 @@
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-black md:text-5xl lg:text-6xl">Mau Wisata Kemana Hari ini?</h1>
         <p class="mb-8 text-lg font-normal text-black lg:text-xl sm:px-16 lg:px-48">Di Melali kami menyediakan berbagai informasi dan juga layanan pembelian tiket tempat wisata di Yogyakarta! </p>
         <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 mx-auto">
-            <a href="#" id="openhome" class="border-2 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-orgCustom hover:bg-transparent hover:text-black focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"">
+            <a href="{{ route('login') }}" id="openhome" class="border-2 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-orgCustom hover:bg-transparent hover:text-black focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"">
               Pesan Sekarang!
               <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
