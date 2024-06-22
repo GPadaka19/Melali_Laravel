@@ -32,10 +32,10 @@
     </style>
 </head>
 <body>
-    <div class="bg-bgCustom flex flex-col items-center justify-center md:h-screen lg:py-10">
+    <div class="min-h-screen bg-bgCustom flex flex-col items-center justify-center">
         <div class="flex flex-col items-center mb-">
             <a href="index.html" class="flex items-center text-2xl font-semibold text-gray-900 dark:text-white">
-            <img src="img/logo.png" alt="logo" style="width: 199px; height: 66px; margin-top: 70px; margin-right: 30px;">
+            <img src="img/logo.png" alt="logo" style="width: 199px; height: 66px; margin-bottom: 30px; margin-top: 30px; margin-right: 30px;">
             <!-- Melali -->
             </a>
         </div>
@@ -49,7 +49,7 @@
             {{ session('message') }}
         </div>
         @endif
-        <form id="registerForm" class="space-y-4 md:space-y-6" action="{{ route('actionregister') }}" method="post">
+        <form id="registerForm" class="items-center justify-center space-y-15 md:space-y-6 " action="{{ route('actionregister') }}" method="post">
           @csrf
             <div>
                 <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your username</label>
