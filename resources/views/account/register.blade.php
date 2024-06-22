@@ -5,12 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In: Melali</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .valid {
+            color: green;
+        }
+        .invalid {
+            color: red;
+        }
+        .password-criteria {
+            list-style-type: none;
+            padding: 0;
+        }
+        .password-criteria li {
+            display: flex;
+            align-items: center;
+        }
+        .password-criteria li::before {
+            content: '✖';
+            margin-right: 10px;
+            color: red;
+        }
+        .password-criteria li.valid::before {
+            content: '✔';
+            color: green;
+        }
+    </style>
 </head>
 <body>
-    <div class="bg-bgCustom flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div class="flex flex-col items-center mb-6">
+    <div class="bg-bgCustom flex flex-col items-center justify-center md:h-screen lg:py-10">
+        <div class="flex flex-col items-center mb-">
             <a href="index.html" class="flex items-center text-2xl font-semibold text-gray-900 dark:text-white">
-            <img src="img/logo.png" alt="logo" style="width: 199px; height: 66px; margin-top: 20px; margin-right: 30px;">
+            <img src="img/logo.png" alt="logo" style="width: 199px; height: 66px; margin-top: 70px; margin-right: 30px;">
             <!-- Melali -->
             </a>
         </div>
@@ -37,6 +62,12 @@
             <div>
                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                 <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <ul class="password-criteria">
+                    <li id="length" class="invalid">8-64 characters</li>
+                    <li id="uppercase" class="invalid">Uppercase & lowercase letters</li>
+                    <li id="number" class="invalid">Numbers</li>
+                    <li id="special" class="invalid">Non-alphanumeric characters</li>
+                </ul>
             </div>
             <div>
                 <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
@@ -59,7 +90,7 @@
 </div>
         </div>
     </div>
-  </section initial-scale="1.0">
+  </section>
 
 <!-- Script -->
 <script src="js/script-register.js"></script>
