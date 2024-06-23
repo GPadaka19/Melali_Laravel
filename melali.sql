@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2024 at 09:54 AM
+-- Generation Time: Jun 23, 2024 at 08:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -56,6 +56,29 @@ CREATE TABLE `cache_locks` (
   `owner` varchar(255) NOT NULL,
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `destinations`
+--
+
+CREATE TABLE `destinations` (
+  `id_places` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `picture` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `destinations`
+--
+
+INSERT INTO `destinations` (`id_places`, `name`, `address`, `price`, `picture`) VALUES
+(1, 'HeHa Sky View', 'Jl. Dlingo-Patuk No.2, Patuk, Bukit, Kec. Patuk, Kabupaten Gunung Kidul, Daerah Istimewa Yogyakarta 55862', 20000.00, 'heha.png'),
+(2, 'Candi Borobudur', 'Jl. Badrawati, Kw. Candi Borobudur, Borobudur, Kec. Borobudur, Kabupaten Magelang, Jawa Tengah\r\n', 50000.00, 'borobudur.png'),
+(3, 'Gembira Loka Zoo', 'Jl. Kebun Raya No.2, Rejowinangun, Kec. Kotagede, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55171', 60000.00, 'gembiraloka.png');
 
 -- --------------------------------------------------------
 
@@ -162,10 +185,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('6UX9Gr8fhYYHwb44vQdtvygYRjpLo1ANTI5QN2S0', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiMW15b0xUNjVDdjdwWHVTc3pYd1c5Qk9EemZUVGxnemdNZEo5SDZXQSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9yZWdpc3RlciI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyNjoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2hvbWUiO319', 1718552936),
-('bgL9RyF1kNBOxKqe0mrL7scmTaAo8oK9oVxYSNOx', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMmR2N09TMTh1ZmtyY2NMSFloYUl6VzFoZjVUOW9XU1JuVkljYXc5OSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9yZWdpc3RlciI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1719042837),
-('lGsB6i44qz2ObLuQW3WpBFbjBOb4v9Z0wFWfivoJ', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMkRDcDl4TVdqVWNEWU1wdHdkY2xEY2ltVW9CdDFOblN3NVlNVXpKayI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1718852944),
-('Wv0dvqtyh5SDbVRSVv2ELTmGSBsK2HPpJyaXQjhg', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQ2FMM0xLN2ZwUk9RZDgwek04OEdlcTM3VHoxTDZZSWVNdlBmTHYzViI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MTM4OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvcmVnaXN0ZXIvdmVyaWZ5L1d5NjFncFlXd3lrd1BsMGh2czkwVTZYNUhqOFBxVEJiWlZzQzhBVFNCamJGUWpmTGJrU1BmQjNKbFI3V0hXTHRJQkJjYkpBeDNaWE9jYVBuOUZhODF2ZFFSUzdmSmNFUmpYTGgiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1718989798);
+('Ln8TWZfLU61WQYUwh9VnK4T29RiOvFX5dgLZn5tq', 43, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiaGFqV0lHN3Z0QVdBSzBJRmdzb1pLYlE2anp1dWZyYUtIdXhpUEFGNSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ob21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDM7fQ==', 1719166993);
 
 -- --------------------------------------------------------
 
@@ -178,7 +198,7 @@ CREATE TABLE `users` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
+  `password` varchar(64) NOT NULL,
   `role` varchar(255) NOT NULL,
   `verify_key` varchar(255) NOT NULL,
   `active` int(1) NOT NULL DEFAULT 0,
@@ -186,6 +206,13 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id_user`, `username`, `email`, `email_verified_at`, `password`, `role`, `verify_key`, `active`, `remember_token`, `created_at`, `updated_at`) VALUES
+(43, '22.11.5020', 'gustipadaka19@gmail.com', NULL, '$2y$12$jeNP.ZrRJbEKgsJJs0s2hu1EcwrTO.NFrYpZrCRN3z8M7dti0l89q', 'user', 'ZNVzu58ooiTErqEI7mWNH7W2yJ6zOuvqTceU2ZHkjtmLeWInjvwfWOc6eFG9ecyVyB8YyUMSLxEQuijNTtVgs4lq2QboxhybV4hp', 1, NULL, '2024-06-23 09:46:38', '2024-06-23 09:57:32');
 
 --
 -- Indexes for dumped tables
@@ -208,6 +235,12 @@ ALTER TABLE `cache`
 --
 ALTER TABLE `cache_locks`
   ADD PRIMARY KEY (`key`);
+
+--
+-- Indexes for table `destinations`
+--
+ALTER TABLE `destinations`
+  ADD PRIMARY KEY (`id_places`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -267,6 +300,12 @@ ALTER TABLE `bookings`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `destinations`
+--
+ALTER TABLE `destinations`
+  MODIFY `id_places` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -288,7 +327,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_user` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
