@@ -38,9 +38,9 @@
 		</ul>
 
 		<div class="h-right">
-			<a href="{{ route('actionlogout') }}" class="h-btn" style="display: inline-block; vertical-align: middle;">
-				Log Out
-				<img src="img/logout.png" style="vertical-align: middle; width: 16px; height: 19px; margin-left: 5px;">
+			<a href="{{ route('actionlogout') }}" class="h-btn" style="display: flex; align-items: center;">
+				<span style="margin-right: 5px;">Log Out</span>
+				<img src="img/logout.png" style="width: 16px; height: 19px;">
 			</a>
 			<div class="bx bx-menu" id="menu-icon">    
 			</div>
