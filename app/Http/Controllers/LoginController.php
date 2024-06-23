@@ -31,14 +31,19 @@ class LoginController extends Controller
         $user = User::where('email', $email)->first();
 
         if ($user) {
+            if ($user->active == 0) {
+                Session::flash('error', 'Akun Anda belum diverifikasi. Silakan periksa email Anda untuk melakukan verifikasi.');
+                return redirect('/login');
+            }
+
             if (Auth::attempt(['email' => $email, 'password' => $password])) {
                 return redirect('/home');
             } else {
-                Session::flash('error', 'Password Salah');
+                Session::flash('error', 'Password salah.');
                 return redirect('/login');
             }
         } else {
-            Session::flash('error', 'Email tidak ditemukan');
+            Session::flash('error', 'Email tidak ditemukan.');
             return redirect('/login');
         }
     }

@@ -27,7 +27,7 @@
 	<!-- header -->
 	<header>
 		<a href="#" class="logo">
-			<img src="img/logo.png" class="navbar-logo">
+			<img src="img/logo-trans.png" class="navbar-logo">
 		</a>
 
 		<ul class="navlist">
@@ -35,17 +35,18 @@
 			<li><a href="#about">About</a></li>
 			<li><a href="#destinations">Destinations</a></li>
 			<li><a href="#testimonial">Testimonial</a></li>
-			<li><a href="#contact">Contact</a></li>
 		</ul>
 
-		<div class="h-rignt">
-			<a href="{{ route('actionlogout') }}" class="h-btn">
-				Book Now!
-				<img src="img/Vector.png">
+		<div class="h-right">
+			<a href="{{ route('actionlogout') }}" class="h-btn" style="display: inline-block; vertical-align: middle;">
+				Log Out
+				<img src="img/logout.png" style="vertical-align: middle; width: 16px; height: 19px; margin-left: 5px;">
 			</a>
-			<div class="bx bx-menu" id="menu-icon">	
+			<div class="bx bx-menu" id="menu-icon">    
 			</div>
 		</div>
+
+
 	</header>
 
 	<!-- home section -->
@@ -138,7 +139,7 @@
 						<h5>Rp 20.000</h5>
 					</div>
 					<div class="box-btn">
-						<a href="#" class="bxx-btn"> Logout</a>
+						<a href="#" class="bxx-btn"> Book Now</a>
 					</div>
 				</div>
 			</div>
