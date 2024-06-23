@@ -931,6 +931,14 @@ select {
   margin-bottom: 1.25rem;
 }
 
+.mr-2\.5 {
+  margin-right: 0.625rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
 .block {
   display: block;
 }
@@ -1096,6 +1104,14 @@ select {
 
 .w-full {
   width: 100%;
+}
+
+.w-52 {
+  width: 13rem;
+}
+
+.w-40 {
+  width: 10rem;
 }
 
 .max-w-2xl {
