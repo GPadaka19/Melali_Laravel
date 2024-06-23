@@ -77,8 +77,6 @@ class RegisterController extends Controller
         return redirect('register');
     }
     
-
-    
     public function verify($verify_key)
     {
         $keyCheck = User::select('verify_key')
