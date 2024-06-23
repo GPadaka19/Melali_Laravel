@@ -19,9 +19,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap" rel="stylesheet">
-</head>
+	
 	<title>Melali: Home</title>
-
 </head>
 <body>
 	<!-- header -->
@@ -45,8 +44,6 @@
 			<div class="bx bx-menu" id="menu-icon">    
 			</div>
 		</div>
-
-
 	</header>
 
 	<!-- home section -->

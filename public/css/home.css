@@ -28,12 +28,15 @@ body{
 }
 
 header{
+	background-color: #faf9ed;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	position: fixed;
 	z-index: 1000;
 	top: 0;
 	right: 0;
+	height: 100px;
 	width: 100%;
-	background: transparent;
 	padding: 30px 15%;
 	display: flex;
 	align-items: center;
