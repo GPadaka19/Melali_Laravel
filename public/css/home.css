@@ -294,7 +294,7 @@ header.sticky{
 	color: var(--other-color);
 }
 
-.destination-content{
+.destination{
 	display: grid;	
 	grid-template-columns: repeat(auto-fit, minmax(300px, auto));
 	align-items: center;

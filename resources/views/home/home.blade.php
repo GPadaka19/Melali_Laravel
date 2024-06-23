@@ -123,57 +123,34 @@
 	</section>
 
 	<!-- destination section -->
-	<section class="destinations" id="destinations">
-		<div class="center-text">
-			<h2>Destination</h2>
-			<p>Here are lots of interesting destination to visit, but don't be confused, they're already grouped by category</p>
-		</div>
-		
-		<div class="destination-content">
-			<div class="box">
-				<img src="img/heha.png">
-				<h3>HeHa Sky View</h3>
-				<h6> Jl. Dlingo-Patuk No.2, Patuk, Bukit, Kec. Patuk, Kabupaten Gunung Kidul, Daerah Istimewa Yogyakarta 55862</h6>
-				<div class="box-main">
-					<div class="box-text">
-						<h5>Rp 20.000</h5>
-					</div>
-					<div class="box-btn">
-						<a href="#" class="bxx-btn"> Book Now</a>
-					</div>
+<section class="destinations" id="destinations">
+    <div class="center-text">
+        <h2>Destination</h2>
+        <p>Here are lots of interesting destinations to visit</p>
+    </div>
+    
+		<div class="destination">
+		@foreach($destinations as $destination)
+		<div class="box">
+			<img src="/img/{{ $destination->picture }}">
+			<h3>{{ $destination->name }}</h3>
+			<h6>{{ $destination->address }}</h6>
+			<div class="box-main">
+				<div class="box-text">
+					<h5>Rp {{ number_format($destination->price, 0, ',', '.') }}</h5>
+					@if($destination->price_weekend)
+					<h5>Rp {{ number_format($destination->price_weekend, 0, ',', '.') }} (Weekend)</h5>
+					@endif
 				</div>
-			</div>
-
-			<div class="box">
-				<img src="img/borobudur.png">
-				<h3>Candi Borobudur</h3>
-				<h6>Jl. Badrawati, Kw. Candi Borobudur, Borobudur, Kec. Borobudur, Kabupaten Magelang, Jawa Tengah</h6>
-				<div class="box-main">
-					<div class="box-text">
-						<h5>Rp 50.000</h5>
-					</div>
-					<div class="box-btn">
-						<a href="#" class="bxx-btn"> Book Now</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="box">
-				<img src="img/gembiraloka.png">
-				<h3>Gembira Loka Zoo</h3>
-				<h6>Jl. Kebun Raya No.2, Rejowinangun, Kec. Kotagede, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55171</h6>
-				<div class="box-main">
-					<div class="box-text">
-						<h5>Rp 60.000 (Weekday)</h5>
-						<h5>Rp 75.000 (Wekkend)</h5>
-					</div>
-					<div class="box-btn">
-						<a href="#" class="bxx-btn"> Book Now</a>
-					</div>
+				<div class="box-btn">
+					<a href="#" class="bxx-btn"> Book Now</a>
 				</div>
 			</div>
 		</div>
-	</section>
+			@endforeach
+		</div>
+</section>
+
 
 	<!-- testimonial section -->
 	<section class="testimonial" id="testimonial">
