@@ -78,20 +78,26 @@ class RegisterController extends Controller
     }
     
     public function verify($verify_key)
-    {
-        $keyCheck = User::select('verify_key')
-                    ->where('verify_key', $verify_key)
-                    ->exists();
+{
+    $keyCheck = User::select('verify_key')
+                ->where('verify_key', $verify_key)
+                ->exists();
+    
+    if ($keyCheck) {
+        $user = User::where('verify_key', $verify_key)
+        ->update([
+            'active' => 1
+        ]);
         
-        if ($keyCheck) {
-            $user = User::where('verify_key', $verify_key)
-            ->update([
-                'active' => 1
-            ]);
-            
-            return "Verifikasi Berhasil. Akun Anda sudah aktif.";
-        } else {
-            return "Key tidak valid!";
-        }
+        // Generate JavaScript code to redirect after 5 seconds
+        $script = '<script>';
+        $script .= 'setTimeout(function() { window.location.href = "'.route('login').'"; }, 5000);';
+        $script .= '</script>';
+        
+        return "Verifikasi telah berhasil. Akun Anda kini aktif. Dalam waktu 5 detik, Anda akan dialihkan ke halaman login." . $script;
+    } else {
+        return "Key tidak valid!";
     }
+}
+
 }
