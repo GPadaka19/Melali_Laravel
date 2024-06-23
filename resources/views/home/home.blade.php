@@ -138,9 +138,6 @@
 			<div class="box-main">
 				<div class="box-text">
 					<h5>Rp {{ number_format($destination->price, 0, ',', '.') }}</h5>
-					@if($destination->price_weekend)
-					<h5>Rp {{ number_format($destination->price_weekend, 0, ',', '.') }} (Weekend)</h5>
-					@endif
 				</div>
 				<div class="box-btn">
 					<a href="#" class="bxx-btn"> Book Now</a>
