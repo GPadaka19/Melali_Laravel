@@ -39,8 +39,8 @@
             </div>
         </div>
     </div>
-  </section>, initial-scale=1.0">
-<title>Document</title>
+  </section>
+<title>Sign In: Melali</title>
 
 <!-- Script -->
 <script src="js/script-login.js"></script>

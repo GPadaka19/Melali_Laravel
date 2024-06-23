@@ -32,8 +32,8 @@
     </style>
 </head>
 <body>
-    <div class="min-h-screen bg-bgCustom flex flex-col items-center justify-center">
-        <div class="flex flex-col items-center mb-">
+    <div class="bg-bgCustom flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+             <div class="flex flex-col items-center ">
             <a href="index.html" class="flex items-center text-2xl font-semibold text-gray-900 dark:text-white">
             <img src="img/logo.png" alt="logo" style="width: 199px; height: 66px; margin-bottom: 30px; margin-top: 30px; margin-right: 30px;">
             <!-- Melali -->
@@ -87,10 +87,7 @@
             </p>
         </form>
     </div>
-</div>
-        </div>
-    </div>
-  </section>
+</section>
 
 <!-- Script -->
 <script src="js/script-register.js"></script>
