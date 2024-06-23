@@ -72,7 +72,7 @@ class RegisterController extends Controller
         Mail::to($request->email)->send(new MailSend($details));
     
         // \Log::info('Verification email sent');
-    
+        
         Session::flash('message', 'Link verifikasi telah dikirim ke Email Anda. Silahkan Cek Email Anda untuk Mengaktifkan Akun');
         return redirect('register');
     }
