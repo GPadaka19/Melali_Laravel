@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2024 at 08:27 PM
+-- Generation Time: Jun 24, 2024 at 11:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -28,9 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `bookings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `id_booking` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(20) UNSIGNED NOT NULL,
+  `destination_id` int(11) NOT NULL,
+  `booking_date` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -185,7 +187,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('Ln8TWZfLU61WQYUwh9VnK4T29RiOvFX5dgLZn5tq', 43, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiaGFqV0lHN3Z0QVdBSzBJRmdzb1pLYlE2anp1dWZyYUtIdXhpUEFGNSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ob21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDM7fQ==', 1719166993);
+('BHd1a5g7PBNzxY1ozGedn9dmZUsYuAgFb0axcDRi', 56, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiT0hzYWZ1dldFdm81cE5JT09TWmNsTEFPYk5GMGZTM2pKcTRydmVqTCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjU2O30=', 1719215672),
+('K9t17FqoGxEUgzNWvdYNajh3rWLYVdfG3uyWORXV', 56, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMkQ4a0Z1MFQwNHhPRFZzOUg0azF2aU9pVnAxR2FRYTdKSUFTOUhsWCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ib29raW5nL0hlSGElMjBTa3klMjBWaWV3Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NTY7fQ==', 1719245450);
 
 -- --------------------------------------------------------
 
@@ -212,7 +215,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `username`, `email`, `email_verified_at`, `password`, `role`, `verify_key`, `active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(43, '22.11.5020', 'gustipadaka19@gmail.com', NULL, '$2y$12$jeNP.ZrRJbEKgsJJs0s2hu1EcwrTO.NFrYpZrCRN3z8M7dti0l89q', 'user', 'ZNVzu58ooiTErqEI7mWNH7W2yJ6zOuvqTceU2ZHkjtmLeWInjvwfWOc6eFG9ecyVyB8YyUMSLxEQuijNTtVgs4lq2QboxhybV4hp', 1, NULL, '2024-06-23 09:46:38', '2024-06-23 09:57:32');
+(56, '22.11.5020', 'gustipadaka19@gmail.com', NULL, '$2y$12$B7eLYu/4A1VeMe3818YbRuAWEp6Mq45g6WvaAYdul56pngplHhEvK', 'user', 'wEkIsEoirF25otkI0QsetxoSqFPLRZrkUJRYUbxVVbdGEYBF8wzZVfmnVdMrCY2I8rtHYmlVnpuuM9F0heNCZjURAJMPddFG2Dia', 1, NULL, '2024-06-24 00:20:40', '2024-06-24 00:20:52');
 
 --
 -- Indexes for dumped tables
@@ -222,7 +225,9 @@ INSERT INTO `users` (`id_user`, `username`, `email`, `email_verified_at`, `passw
 -- Indexes for table `bookings`
 --
 ALTER TABLE `bookings`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_booking`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `destination_id` (`destination_id`);
 
 --
 -- Indexes for table `cache`
@@ -297,7 +302,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_booking` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `destinations`
@@ -327,7 +332,18 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_user` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE CASCADE,
+  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`destination_id`) REFERENCES `destinations` (`id_places`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
