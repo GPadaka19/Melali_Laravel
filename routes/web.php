@@ -24,3 +24,10 @@ Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actio
 //middleware
 Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
+
+//destination
+Route::get('/booking/{destination}', function ($destination) {
+    $judulForm = "Form Pemesanan Tiket $destination";
+
+    return view('booking.booking', compact('judulForm'));
+})->name('booking');
