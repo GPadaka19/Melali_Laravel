@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap" rel="stylesheet">
-	
+
 	<title>Melali: Home</title>
 </head>
 <body>
@@ -137,11 +137,12 @@
 					<h5>Rp {{ number_format($destination->price, 0, ',', '.') }}</h5>
 				</div>
 				<div class="box-btn">
-					<a href="#" class="bxx-btn"> Book Now</a>
+					<!-- Mengarahkan ke halaman booking.blade.php dengan judul form dinamis -->
+					<a href="{{ route('booking', ['destination' => $destination->name]) }}" class="bxx-btn"> Book Now</a>
 				</div>
 			</div>
 		</div>
-			@endforeach
+		@endforeach
 		</div>
 </section>
 
