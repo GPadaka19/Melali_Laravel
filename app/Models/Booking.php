@@ -13,7 +13,8 @@ class Booking extends Model
     protected $table = 'bookings';
     protected $primaryKey = 'id_booking'; // Sesuaikan dengan nama primary key yang Anda gunakan dalam migrasi
 
-    protected $fillable = ['id_user','full_name','email','no_hp','id_destination','quantity','payment_method','total_price','booking_date'];
+    protected $fillable = ['id_user','full_name','email','no_hp','id_destination','quantity','total_price','payment_method','booking_date'];
+
 
     // Relationship dengan tabel user (jika diperlukan)
     public function user()

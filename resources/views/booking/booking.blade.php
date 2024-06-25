@@ -7,10 +7,32 @@
     @vite('resources/css/app.css')
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-    var today = new Date().toISOString().split('T')[0];
-    document.getElementById("booking_date").setAttribute('min', today);
-    
-    phoneNumberInput.addEventListener("input", function() {
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementById("booking_date").setAttribute('min', today);
+
+        var jumlahTiketInput = document.getElementById("jumlah_tiket");
+        var totalHargaInput = document.getElementById("total_harga");
+
+        // Function to update total price based on quantity
+        function updateTotalPrice() {
+            var hargaPerTiket = {{ $destination->price }};
+            var jumlahTiket = jumlahTiketInput.value;
+
+            var totalHarga = hargaPerTiket * jumlahTiket;
+            totalHargaInput.value = "Rp " + totalHarga.toLocaleString('id-ID');
+        }
+
+        // Initial update when page loads
+        updateTotalPrice();
+
+        // Add event listener to jumlah_tiket input
+        jumlahTiketInput.addEventListener("input", function() {
+            updateTotalPrice();
+        });
+
+        // Validate phone number input
+        var phoneNumberInput = document.getElementById("no_hp");
+        phoneNumberInput.addEventListener("input", function() {
             const phoneNumber = phoneNumberInput.value.trim();
             
             // Check if the phone number starts with "08"
@@ -31,7 +53,7 @@
             @csrf
             <div class="mb-4">
                 <label for="destinasi" class="block mb-2 text-sm font-medium text-gray-700">Destinasi:</label>
-                <input type="text" id="destinasi" name="destinasi" value="{{ $judulForm }}" readonly class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:outline-none focus:ring focus:ring-indigo-200">
+                <input type="text" id="destinasi" name="destinasi" value="{{ $judulForm }}" readonly class="text-neutral-500 w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:outline-none focus:ring focus:ring-indigo-200">
                 <input type="hidden" name="id_destination" value="{{ $destination->id_destination }}">
             </div>
             <div class="mb-4">
@@ -40,11 +62,11 @@
             </div>
             <div class="mb-4">
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email:</label>
-                <input type="email" id="email" name="email" value="{{ Auth::user()->email }}" class="text-gray-400 w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" required>
+                <input type="email" id="email" name="email" value="{{ Auth::user()->email }}" class="text-gray-700 w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" required>
             </div>
             <div class="mb-4">
                 <label for="no_hp" class="block mb-2 text-sm font-medium text-gray-700">Nomor HP:</label>
-                <input type="tel" placeholder="08123456789101" id="no_hp" name="no_hp" class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" pattern="[0-9]*" maxlength="13" minlength="10"  required>
+                <input type="tel" placeholder="08123456789" id="no_hp" name="no_hp" class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" pattern="[0-9]*" maxlength="13" minlength="10" required>
             </div>
             <div class="mb-4">
                 <label for="booking_date" class="block mb-2 text-sm font-medium text-gray-700">Tanggal Booking:</label>
@@ -53,6 +75,10 @@
             <div class="mb-4">
                 <label for="jumlah_tiket" class="block mb-2 text-sm font-medium text-gray-700">Jumlah Tiket:</label>
                 <input type="number" id="jumlah_tiket" name="quantity" class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" value="1" required>
+            </div>
+            <div class="mb-4">
+                <label for="total_harga" class="block mb-2 text-sm font-medium text-gray-700">Total Harga:</label>
+                <input type="text" id="total_harga" name="total_price" class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" value="Rp {{ number_format($destination->price, 0, ',', '.') }}" readonly required>
             </div>
             <div class="mt-6 text-center">
                 <h3 class="text-lg font-semibold text-gray-700">Pilih Metode Pembayaran:</h3>
