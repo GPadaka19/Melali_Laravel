@@ -134,11 +134,11 @@
 			<h6>{{ $destination->address }}</h6>
 			<div class="box-main">
 				<div class="box-text">
+					<h5>Start From</h5>
 					<h5>Rp {{ number_format($destination->price, 0, ',', '.') }}</h5>
 				</div>
 				<div class="box-btn">
-					<!-- Mengarahkan ke halaman booking.blade.php dengan judul form dinamis -->
-					<a href="{{ route('booking', ['destination' => $destination->name]) }}" class="bxx-btn"> Book Now</a>
+				<a href="{{ route('booking', ['destination' => $destination->name]) }}" class="bxx-btn"> Book Now</a>
 				</div>
 			</div>
 		</div>

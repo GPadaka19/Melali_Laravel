@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melali</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>/* Fade-in Animation */
+    <style>
 @keyframes fade-in {
     from {
         opacity: 0;
@@ -17,9 +17,8 @@
     }
 }
 
-/* Apply Animation to Header */
 .text-4xl, .text-lg, .logo {
-    animation: fade-in 1s ease-out; /* Terapkan animasi fade-in */
+    animation: fade-in 1s ease-out;
 }
 
 </style>

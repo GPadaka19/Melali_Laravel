@@ -64,7 +64,8 @@ return [
     | is set to "UTC" by default as it is suitable for most use cases.
     |
     */
-
+    'date_format' => 'd/m/Y',
+    'date_format_javascript' => 'DD/MM/YYYY',
     'timezone' => env('APP_TIMEZONE', 'UTC'),
 
     /*
