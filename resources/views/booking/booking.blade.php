@@ -5,11 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Booking: Melali</title>
     @vite('resources/css/app.css')
-    <script>document.addEventListener("DOMContentLoaded", function() {
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
     var today = new Date().toISOString().split('T')[0];
     document.getElementById("booking_date").setAttribute('min', today);
-});
-</script>
+    
+    phoneNumberInput.addEventListener("input", function() {
+            const phoneNumber = phoneNumberInput.value.trim();
+            
+            // Check if the phone number starts with "08"
+            if (!phoneNumber.startsWith("08")) {
+                phoneNumberInput.setCustomValidity("Nomor HP harus dimulai dengan '08'");
+            } else {
+                phoneNumberInput.setCustomValidity("");
+            }
+        });
+    });
+    </script>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto mt-8 max-w-lg rounded-lg bg-white p-6 shadow-lg">
@@ -32,7 +44,7 @@
             </div>
             <div class="mb-4">
                 <label for="no_hp" class="block mb-2 text-sm font-medium text-gray-700">Nomor HP:</label>
-                <input type="text" id="no_hp" name="no_hp" class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" required>
+                <input type="tel" placeholder="08123456789101" id="no_hp" name="no_hp" class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" pattern="[0-9]*" maxlength="13" minlength="10"  required>
             </div>
             <div class="mb-4">
                 <label for="booking_date" class="block mb-2 text-sm font-medium text-gray-700">Tanggal Booking:</label>
@@ -58,8 +70,5 @@
             </div>
         </form>
     </div>
-
-
-
 </body>
 </html>
