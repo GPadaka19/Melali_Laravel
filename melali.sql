@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2024 at 11:27 PM
+-- Generation Time: Jun 26, 2024 at 11:06 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -28,12 +28,35 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `bookings` (
-  `id_booking` bigint(20) UNSIGNED NOT NULL,
-  `user_id` int(20) UNSIGNED NOT NULL,
-  `destination_id` int(11) NOT NULL,
+  `id_booking` int(11) NOT NULL,
+  `id_user` int(20) UNSIGNED NOT NULL,
+  `full_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `no_hp` varchar(13) NOT NULL,
+  `id_destination` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `payment_method` enum('transfer','qris') NOT NULL,
   `booking_date` date NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `total_price` decimal(10,0) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Triggers `bookings`
+--
+DELIMITER $$
+CREATE TRIGGER `calculate_total_price_on_insert` BEFORE INSERT ON `bookings` FOR EACH ROW BEGIN
+    DECLARE destination_price DECIMAL(10,2);
+
+    -- Get the price of the destination based on id_destination
+    SELECT price INTO destination_price FROM destinations WHERE id_destination = NEW.id_destination;
+
+    -- Calculate the total price
+    SET NEW.total_price = destination_price * NEW.quantity;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -66,7 +89,7 @@ CREATE TABLE `cache_locks` (
 --
 
 CREATE TABLE `destinations` (
-  `id_places` int(11) NOT NULL,
+  `id_destination` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `address` varchar(255) NOT NULL,
   `price` decimal(10,2) NOT NULL,
@@ -77,7 +100,7 @@ CREATE TABLE `destinations` (
 -- Dumping data for table `destinations`
 --
 
-INSERT INTO `destinations` (`id_places`, `name`, `address`, `price`, `picture`) VALUES
+INSERT INTO `destinations` (`id_destination`, `name`, `address`, `price`, `picture`) VALUES
 (1, 'HeHa Sky View', 'Jl. Dlingo-Patuk No.2, Patuk, Bukit, Kec. Patuk, Kabupaten Gunung Kidul, Daerah Istimewa Yogyakarta 55862', 20000.00, 'heha.png'),
 (2, 'Candi Borobudur', 'Jl. Badrawati, Kw. Candi Borobudur, Borobudur, Kec. Borobudur, Kabupaten Magelang, Jawa Tengah\r\n', 50000.00, 'borobudur.png'),
 (3, 'Gembira Loka Zoo', 'Jl. Kebun Raya No.2, Rejowinangun, Kec. Kotagede, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55171', 60000.00, 'gembiraloka.png');
@@ -187,8 +210,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('BHd1a5g7PBNzxY1ozGedn9dmZUsYuAgFb0axcDRi', 56, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiT0hzYWZ1dldFdm81cE5JT09TWmNsTEFPYk5GMGZTM2pKcTRydmVqTCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjU2O30=', 1719215672),
-('K9t17FqoGxEUgzNWvdYNajh3rWLYVdfG3uyWORXV', 56, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMkQ4a0Z1MFQwNHhPRFZzOUg0azF2aU9pVnAxR2FRYTdKSUFTOUhsWCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ib29raW5nL0hlSGElMjBTa3klMjBWaWV3Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NTY7fQ==', 1719245450);
+('3tgkXh2TXBOvPEfFu2F7ftgTDaOM5A0tjm1Gukbz', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTjB2NDhDakhrckYwZHpLMU1ubDBBNzZkSFc3MXpoeEhXb3NLVG9DSyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hY3Rpb25sb2dvdXQiO319', 1719400376);
 
 -- --------------------------------------------------------
 
@@ -215,7 +237,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `username`, `email`, `email_verified_at`, `password`, `role`, `verify_key`, `active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(56, '22.11.5020', 'gustipadaka19@gmail.com', NULL, '$2y$12$B7eLYu/4A1VeMe3818YbRuAWEp6Mq45g6WvaAYdul56pngplHhEvK', 'user', 'wEkIsEoirF25otkI0QsetxoSqFPLRZrkUJRYUbxVVbdGEYBF8wzZVfmnVdMrCY2I8rtHYmlVnpuuM9F0heNCZjURAJMPddFG2Dia', 1, NULL, '2024-06-24 00:20:40', '2024-06-24 00:20:52');
+(6, 'Gusti Padaka', 'gustipadaka19@gmail.com', '2024-06-26 03:05:57', '$2y$12$uXuBO1L9p5j4B2stRzkf5eLrR952hZNdz1Lf2sWDgjQF6VPW8/lnS', 'user', 'IvtHSnq36nuvqEzA9WL3c3O1Pb8sCbwN4fjjkBRbrH3P8Pr3G9DyfKSOiUXN9wPdKoQ7U3Ir0VkLLaKMAUmmcvYucpv1ES9VC3Bp', 1, NULL, '2024-06-26 03:05:29', '2024-06-26 03:05:57');
 
 --
 -- Indexes for dumped tables
@@ -226,8 +248,8 @@ INSERT INTO `users` (`id_user`, `username`, `email`, `email_verified_at`, `passw
 --
 ALTER TABLE `bookings`
   ADD PRIMARY KEY (`id_booking`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `destination_id` (`destination_id`);
+  ADD KEY `id_destination` (`id_destination`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `cache`
@@ -245,7 +267,7 @@ ALTER TABLE `cache_locks`
 -- Indexes for table `destinations`
 --
 ALTER TABLE `destinations`
-  ADD PRIMARY KEY (`id_places`);
+  ADD PRIMARY KEY (`id_destination`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -292,7 +314,8 @@ ALTER TABLE `sessions`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD KEY `idx_users_id_user` (`id_user`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -302,13 +325,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id_booking` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_booking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `destinations`
 --
 ALTER TABLE `destinations`
-  MODIFY `id_places` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_destination` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -332,7 +355,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id_user` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -342,8 +365,8 @@ ALTER TABLE `users`
 -- Constraints for table `bookings`
 --
 ALTER TABLE `bookings`
-  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`) ON DELETE CASCADE,
-  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`destination_id`) REFERENCES `destinations` (`id_places`) ON DELETE CASCADE;
+  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`id_destination`) REFERENCES `destinations` (`id_destination`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_bookings_users` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
