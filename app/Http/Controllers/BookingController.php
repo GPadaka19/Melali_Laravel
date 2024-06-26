@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-// \DB::enableQueryLog();
-// // Your save operation
-// dd(\DB::getQueryLog());
-
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Destination;
@@ -52,7 +48,10 @@ class BookingController extends Controller
         // Simpan booking ke dalam database
         $booking->save();
 
-        // Redirect ke halaman sukses atau melakukan operasi lain sesuai kebutuhan
-        return redirect()->route('home')->with('success', 'Booking tiket berhasil!');
+        // Cari destinasi berdasarkan ID yang disimpan
+        $destination = Destination::where('id_destination', $booking->id_destination)->firstOrFail();
+
+        // Redirect ke halaman booking dengan pesan sukses
+        return redirect()->route('booking', ['destination' => $destination->name])->with('success', 'Booking tiket berhasil!');
     }
 }

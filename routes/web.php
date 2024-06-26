@@ -33,4 +33,5 @@ Route::get('/booking/{destination}', function ($destination) {
 // Destination and Booking
 Route::get('/booking/{destination}', [BookingController::class, 'booking'])->name('booking');
 Route::post('/booking', [BookingController::class, 'actionbooking'])->name('actionbooking');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 

@@ -22,7 +22,9 @@
 
 	<title>Melali: Home</title>
 </head>
-<body>
+<body class="bg-gray-100">
+    <div class="container mx-auto mt-8 max-w-lg rounded-lg bg-white p-6 shadow-lg">
+        <h1 class="mb-4 text-3xl font-bold text-center text-gray-800">Home</h1>
 	<!-- header -->
 	<header>
 		<a href="#" class="logo">
@@ -109,7 +111,7 @@
 					</div>
 				</div>
 
-								<div class="box-in">
+					<div class="box-in">
 					<div class="main-box">
 						<h5>20+</h5>
 						<h6>Years of Experience</h6>
