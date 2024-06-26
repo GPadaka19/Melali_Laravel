@@ -46,7 +46,6 @@
     </script>
 </head>
 <body class="bg-gray-100">
-        
     <div class="container mx-auto mt-8 max-w-lg rounded-lg bg-white p-6 shadow-lg">
         <h1 class="mb-4 text-3xl font-bold text-center text-gray-800">Form Pemesanan Tiket</h1>
         <h2 class="mb-6 text-2xl text-center text-gray-600">{{ $judulForm }}</h2>
@@ -98,15 +97,35 @@
         </form>
     </div>
     @if(session('success'))
-    <div class="fixed top-0 right-0 m-4 flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800" role="alert">
-        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-        </svg>
-        <span class="sr-only">Info</span>
-        <div>
-            <span class="font-medium">Success alert!</span> Change a few things up and try submitting again.
+        <div class="alert alert-success fixed top-0 right-0 m-4 flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800" role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+                <span class="font-medium">Success alert!</span> Your ticket has been successfully booked.
+            </div>
         </div>
-    </div>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Fade out alert after 3 seconds
+            var alert = document.querySelector(".alert-success");
+            if (alert) {
+                setTimeout(function() {
+                    alert.style.transition = "opacity 1s";
+                    alert.style.opacity = "0";
+                    setTimeout(function() {
+                        alert.remove();
+                    }, 1000); // Wait for the fade-out to complete before removing the alert
+                }, 3000);
+            }
+
+            // Redirect to home after 5 seconds
+            setTimeout(function() {
+                window.location.href = "{{ url('/') }}";
+            }, 5000);
+        });
+        </script>
     @endif
 </body>
 </html>
