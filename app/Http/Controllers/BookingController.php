@@ -41,7 +41,6 @@ class BookingController extends Controller
         $booking->id_destination = $request->input('id_destination'); // Mengambil ID destinasi dari form
         $booking->booking_date = $request->input('booking_date');
         $booking->quantity = $request->input('quantity');
-        $booking->payment_method = $request->input('payment_method');
         $booking->status = 'unpaid';
         // Anda bisa menambahkan field lain sesuai kebutuhan
 
@@ -83,8 +82,9 @@ class BookingController extends Controller
                           ->latest()
                           ->firstOrFail();
 
-        // Update booking status menjadi paid
+        // Update booking status menjadi paid dan simpan metode pembayaran
         $booking->status = 'paid';
+        $booking->payment_method = $request->input('payment_method');
         $booking->save();
 
         // Redirect ke halaman konfirmasi dengan pesan sukses
