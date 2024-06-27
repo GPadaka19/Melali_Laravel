@@ -15,27 +15,27 @@
                 <h3 class="text-lg font-semibold">Detail Pemesanan:</h3>
                 <div class="mb-4">
                     <label for="full_name" class="block mb-2 text-sm font-medium text-gray-700">Nama Lengkap:</label>
-                    <input type="text" id="full_name" name="full_name" value="{{ $booking->full_name }}" class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" required readonly>
+                    <input type="text" id="full_name" name="full_name" value="{{ $booking->full_name }}" readonly class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200 cursor-default">
                 </div>
                 <div class="mb-4">
                     <label for="full_name" class="block mb-2 text-sm font-medium text-gray-700">Email:</label>
-                    <input type="text" id="full_name" name="full_name" value="{{ $booking->email }}" class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" required readonly>
+                    <input type="text" id="full_name" name="full_name" value="{{ $booking->email }}" readonly class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200 cursor-default" >
                 </div>
                 <div class="mb-4">
                     <label for="full_name" class="block mb-2 text-sm font-medium text-gray-700">Nomor HP:</label>
-                    <input type="text" id="full_name" name="full_name" value="{{ $booking->no_hp }}" class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" required readonly>
+                    <input type="text" id="full_name" name="full_name" value="{{ $booking->no_hp }}" readonly class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200 cursor-default">
                 </div>
                 <div class="mb-4">
                     <label for="full_name" class="block mb-2 text-sm font-medium text-gray-700">Nomor HP:</label>
-                    <input type="text" id="full_name" name="full_name" value="{{ $booking->booking_date }}" class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" required readonly>
+                    <input type="text" id="full_name" name="full_name" value="{{ $booking->booking_date }}" readonly class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200 cursor-default">
                 </div>
                 <div class="mb-4">
                     <label for="full_name" class="block mb-2 text-sm font-medium text-gray-700">Jumlah Tiket:</label>
-                    <input type="text" id="full_name" name="full_name" value=" {{ $booking->quantity }}" class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" required readonly>
+                    <input type="text" id="full_name" name="full_name" value=" {{ $booking->quantity }}" readonly class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200 cursor-default">
                 </div>
                 <div class="mb-4">
                     <label for="full_name" class="block mb-2 text-sm font-medium text-gray-700">Total Harga:</label>
-                    <input type="text" id="full_name" name="full_name" value="Rp {{ number_format($booking->total_price, 0, ',', '.') }}" class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" required readonly>
+                    <input type="text" id="full_name" name="full_name" value="Rp {{ number_format($booking->total_price, 0, ',', '.') }}" readonly class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200 cursor-default">
                 </div>
             </div>
         </form>
