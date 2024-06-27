@@ -52,9 +52,11 @@
         <form id="submitForm" class="items-center justify-center space-y-15 md:space-y-6 " action="{{route('actionbooking')}}" method="post">
             @csrf
             <div class="mb-4">
-                <label for="destinasi" class="block mb-2 text-sm font-medium text-gray-700">Destinasi:</label>
-                <input type="text" id="destinasi" name="destinasi" value="{{ $judulForm }}" readonly class="text-neutral-500 w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:outline-none focus:ring focus:ring-indigo-200">
-                <input type="hidden" name="id_destination" value="{{ $destination->id_destination }}">
+            <label for="destinasi" class="block mb-2 text-sm font-medium text-gray-700">Destinasi:</label>
+            <input type="text" id="destinasi" name="destinasi" value="{{ $judulForm }}" readonly
+                class="text-neutral-500 w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:outline-none focus:ring focus:ring-indigo-200"
+                style="cursor: default;">
+            <input type="hidden" name="id_destination" value="{{ $destination->id_destination }}">
             </div>
             <div class="mb-4">
                 <label for="full_name" class="block mb-2 text-sm font-medium text-gray-700">Nama Lengkap:</label>
@@ -62,7 +64,7 @@
             </div>
             <div class="mb-4">
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email:</label>
-                <input type="email" id="email" name="email" value="{{ Auth::user()->email }}" class="text-gray-700 w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" required>
+                <input type="email" id="email" name="email" value="{{ Auth::user()->email }}" class="text-gray-700 w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" requiredv>
             </div>
             <div class="mb-4">
                 <label for="no_hp" class="block mb-2 text-sm font-medium text-gray-700">Nomor HP:</label>
@@ -93,6 +95,7 @@
             <span class="sr-only">Info</span>
             <div>
                 <span class="font-medium">Success alert!</span> Your order has been saved, redirecting to payment process.
+                <span id="countdown-text"></span>
             </div>
         </div>
         <script>
@@ -108,6 +111,17 @@
                     }, 1000);
                 }, 3000);
             }
+
+            var countdown = 5;
+
+            function updateCountdown() {
+                document.getElementById("countdown-text").textContent = " (" + countdown + " detik)";
+                if (countdown > 0) {
+                    countdown--;
+                    setTimeout(updateCountdown, 1000);
+                }
+            }
+            updateCountdown();
 
             setTimeout(function() {
                 window.location.href = "{{ url('payment') }}";
