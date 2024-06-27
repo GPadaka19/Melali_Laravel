@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2024 at 11:06 PM
+-- Generation Time: Jun 27, 2024 at 09:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,12 +35,20 @@ CREATE TABLE `bookings` (
   `no_hp` varchar(13) NOT NULL,
   `id_destination` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `payment_method` enum('transfer','qris') NOT NULL,
+  `payment_method` enum('transfer','qris') DEFAULT NULL,
   `booking_date` date NOT NULL,
+  `status` enum('unpaid','paid','cancel') NOT NULL DEFAULT 'unpaid',
   `total_price` decimal(10,0) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id_booking`, `id_user`, `full_name`, `email`, `no_hp`, `id_destination`, `quantity`, `payment_method`, `booking_date`, `status`, `total_price`, `created_at`, `updated_at`) VALUES
+(27, 1, 'Mumtaspakez', 'gustipadaka19@gmail.com', '0834234234242', 3, 14, 'transfer', '2024-06-27', 'paid', 840000, '2024-06-27 06:41:29', '2024-06-27 06:41:51');
 
 --
 -- Triggers `bookings`
@@ -210,7 +218,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('3tgkXh2TXBOvPEfFu2F7ftgTDaOM5A0tjm1Gukbz', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTjB2NDhDakhrckYwZHpLMU1ubDBBNzZkSFc3MXpoeEhXb3NLVG9DSyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hY3Rpb25sb2dvdXQiO319', 1719400376);
+('OlWi5Z07MTmeeGeU7CW67U6ghbT8tZnVjjC1L768', 1, '127.0.0.1', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36 Edg/126.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUERUeExOTnlPbUFPaDEya2hNanpBdDFHZGJHMWY4VzJWZUlTcVYzVCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ob21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNDoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FjdGlvbmxvZ291dCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1719495711);
 
 -- --------------------------------------------------------
 
@@ -237,7 +245,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `username`, `email`, `email_verified_at`, `password`, `role`, `verify_key`, `active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(6, 'Gusti Padaka', 'gustipadaka19@gmail.com', '2024-06-26 03:05:57', '$2y$12$uXuBO1L9p5j4B2stRzkf5eLrR952hZNdz1Lf2sWDgjQF6VPW8/lnS', 'user', 'IvtHSnq36nuvqEzA9WL3c3O1Pb8sCbwN4fjjkBRbrH3P8Pr3G9DyfKSOiUXN9wPdKoQ7U3Ir0VkLLaKMAUmmcvYucpv1ES9VC3Bp', 1, NULL, '2024-06-26 03:05:29', '2024-06-26 03:05:57');
+(1, 'Gusti Padaka', 'gustipadaka19@gmail.com', '2024-06-26 11:29:29', '$2y$12$rweaVmozj/2nh36TfvQmIuKUo1QdQe3E1b1LrAL9qam4bSsctMls.', 'user', '80I4lcAq2VaT8NgIHmjFCZKKLuLYLLmwb630DFVZLFgeNReuecAsau0wx00LH21RaSZSKUjYGO8WBuOSAiDgfstTeeFXFH30xxmd', 1, NULL, '2024-06-26 11:28:44', '2024-06-26 11:29:29');
 
 --
 -- Indexes for dumped tables
@@ -325,7 +333,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id_booking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_booking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `destinations`
@@ -355,7 +363,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
