@@ -77,6 +77,7 @@ class RegisterController extends Controller
         if ($keyCheck) {
             $user = User::where('verify_key', $verify_key)->first();
             $user->active = 1;
+            $user->email_verified_at = now();
             $user->save();
 
             // Redirect to login after 5 seconds
@@ -90,11 +91,16 @@ class RegisterController extends Controller
                 $user->save();
             }
 
-            return "Verifikasi telah berhasil. Akun Anda kini aktif. Dalam waktu 5 detik, Anda akan dialihkan ke halaman login." . $script;
+            return view('verification.verification')->with('message', 'Verifikasi telah berhasil. Akun Anda kini aktif. Dalam waktu 5 detik, Anda akan dialihkan ke halaman login.');
         } else {
-            return "Kunci tidak valid!";
+            return view('verification.verification')->with('message', 'Kunci tidak valid!');
         }
     }
+
+    protected function redirectPath()
+{
+    return '/home'; // Change this to your desired redirect path
+}
 
     protected function registered(Request $request, $user)
     {
