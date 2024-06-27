@@ -260,6 +260,6 @@
 		</div>
 	</div>
 	<!-- JS -->
-	<script src="script.js"></script>
+	<script src="js\script-home.js"></script>
 </body>
 </html>

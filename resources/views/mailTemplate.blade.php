@@ -113,9 +113,6 @@
   <body>
     <table class="container" style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
       <tr>
-        <td class="header" style="text-align: center; padding: 20px;">
-          <img src="YOUR_LOGO_URL" alt="Company Logo" style="max-width: 100px;" />
-        </td>
       </tr>
       <tr>
         <td class="content" style="padding: 20px; text-align: center;">
@@ -146,8 +143,6 @@
           </table>
           <h3 style="margin-top: 20px; font-size: 18px; font-weight: bold;">Klik tombol di bawah ini untuk Verifikasi Akun:</h3>
           <a href="{{$details['url']}}" class="button" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #f66f4d; color: #ffffff; text-decoration: none; border-radius: 5px; font-size: 16px; font-weight: bold;">Verifikasi Akun</a>
-          <a href="https://www.wikipedia.org/" class="button" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #f66f4d; color: #ffffff; text-decoration: none; border-radius: 5px; font-size: 16px; font-weight: bold;">Verifikasi Akun</a>
-          <p style="font-size: 16px; color: #666666; margin-top: 20px;">Atau salin link di bawah ini dan tempelkan di browser Anda:</p>
           <b style="color: blue; display: block; margin-top: 10px;">{{$details['url']}}</b>
           <p style="font-size: 16px; color: #666666; margin-top: 20px;">Terima kasih telah melakukan registrasi.</p>
         </td>
@@ -160,9 +155,3 @@
     </table>
   </body>
 </html>
-
-
-
-
-
-<!-- {{$details['url']}} -->

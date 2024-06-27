@@ -94,7 +94,7 @@
             </svg>
             <span class="sr-only">Info</span>
             <div>
-                <span class="font-medium">Success alert!</span> Your order has been saved, redirecting to payment process.
+                <span class="font-medium">Success alert!</span> Your order has been saved, redirecting to payment process, In
                 <span id="countdown-text"></span>
             </div>
         </div>
@@ -109,13 +109,13 @@
                     setTimeout(function() {
                         alert.remove();
                     }, 1000);
-                }, 3000);
+                }, 5500);
             }
 
             var countdown = 5;
 
             function updateCountdown() {
-                document.getElementById("countdown-text").textContent = " (" + countdown + " detik)";
+                document.getElementById("countdown-text").textContent = " (" + countdown + " Second)";
                 if (countdown > 0) {
                     countdown--;
                     setTimeout(updateCountdown, 1000);
@@ -125,7 +125,7 @@
 
             setTimeout(function() {
                 window.location.href = "{{ url('payment') }}";
-            }, 5000);
+            }, 5900);
         });
         </script>
     @endif
