@@ -64,8 +64,9 @@ class BookingController extends Controller
                     ->first();
 
         if (!$booking) {
-            abort(404); // Or handle as per your application logic
+            return redirect()->route('home')->with('success', 'Tidak ada tiket yang perlu dibayar.');
         }
+
         return view('payment.payment', compact('booking'));
     }
 
