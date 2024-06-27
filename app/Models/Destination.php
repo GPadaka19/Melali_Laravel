@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Destination extends Model
 {
+    protected $primaryKey = 'id_destination';
+
     protected $fillable = [
         'id_user',
         'full_name',

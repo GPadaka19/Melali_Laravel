@@ -74,24 +74,13 @@
             </div>
             <div class="mb-4">
                 <label for="jumlah_tiket" class="block mb-2 text-sm font-medium text-gray-700">Jumlah Tiket:</label>
-                <input type="number" id="jumlah_tiket" name="quantity" class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" value="1" required>
+                <input type="number" id="jumlah_tiket" name="quantity" class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" value="1" min='1' required>
             </div>
             <div class="mb-4">
                 <label for="total_harga" class="block mb-2 text-sm font-medium text-gray-700">Total Harga:</label>
                 <input type="text" id="total_harga" name="total_price" class="w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" value="Rp {{ number_format($destination->price, 0, ',', '.') }}" readonly required>
             </div>
             <div class="mt-6 text-center">
-                <h3 class="text-lg font-semibold text-gray-700">Pilih Metode Pembayaran:</h3>
-                <div class="flex justify-center mt-4">
-                    <label for="metode_pembayaran_transfer" class="flex items-center space-x-2 cursor-pointer">
-                        <input type="radio" id="metode_pembayaran_transfer" name="payment_method" value="transfer" class="rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" required>
-                        <span>Transfer Bank</span>
-                    </label>
-                    <label for="metode_pembayaran_cod" class="flex items-center space-x-2 cursor-pointer ml-4">
-                        <input type="radio" id="metode_pembayaran_cod" name="payment_method" value="qris" class="rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-200" required>
-                        <span>QRIS</span>
-                    </label>
-                </div>
                 <button type="submit" class="w-full rounded-lg bg-indigo-500 px-4 py-2 text-white transition duration-300 hover:bg-indigo-600 mt-4">Submit</button>
             </div>
         </form>
@@ -103,12 +92,12 @@
             </svg>
             <span class="sr-only">Info</span>
             <div>
-                <span class="font-medium">Success alert!</span> Your ticket has been successfully booked.
+                <span class="font-medium">Success alert!</span> Your order has been saved, redirecting to payment process.
             </div>
         </div>
         <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Fade out alert after 3 seconds
+            // Fade out alert after 3 detik
             var alert = document.querySelector(".alert-success");
             if (alert) {
                 setTimeout(function() {
@@ -116,13 +105,12 @@
                     alert.style.opacity = "0";
                     setTimeout(function() {
                         alert.remove();
-                    }, 1000); // Wait for the fade-out to complete before removing the alert
+                    }, 1000);
                 }, 3000);
             }
 
-            // Redirect to home after 5 seconds
             setTimeout(function() {
-                window.location.href = "{{ url('/') }}";
+                window.location.href = "{{ url('payment') }}";
             }, 5000);
         });
         </script>

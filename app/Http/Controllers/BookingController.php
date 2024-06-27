@@ -30,7 +30,6 @@ class BookingController extends Controller
             'id_destination' => 'required|exists:destinations,id_destination',
             'booking_date' => 'required|date',
             'quantity' => 'required|integer|min:1',
-            'payment_method' => 'required|in:transfer,qris',
         ]);
 
         // Proses penyimpanan data booking ke dalam database
@@ -43,6 +42,7 @@ class BookingController extends Controller
         $booking->booking_date = $request->input('booking_date');
         $booking->quantity = $request->input('quantity');
         $booking->payment_method = $request->input('payment_method');
+        $booking->status = 'unpaid';
         // Anda bisa menambahkan field lain sesuai kebutuhan
 
         // Simpan booking ke dalam database
@@ -53,5 +53,40 @@ class BookingController extends Controller
 
         // Redirect ke halaman booking dengan pesan sukses
         return redirect()->route('booking', ['destination' => $destination->name])->with('success', 'Booking tiket berhasil!');
+    }
+
+    public function payment()
+    {
+        $booking = Booking::with('destination')
+                    ->where('id_user', auth()->user()->id_user)
+                    ->where('status', 'unpaid')
+                    ->latest()
+                    ->first();
+
+        if (!$booking) {
+            abort(404); // Or handle as per your application logic
+        }
+        return view('payment.payment', compact('booking'));
+    }
+
+    public function actionPayment(Request $request)
+    {
+        // Validasi data yang diterima dari form
+        $request->validate([
+            'payment_method' => 'required|string',
+        ]);
+
+        // Cari booking yang unpaid untuk user yang sedang login
+        $booking = Booking::where('id_user', auth()->user()->id_user)
+                          ->where('status', 'unpaid')
+                          ->latest()
+                          ->firstOrFail();
+
+        // Update booking status menjadi paid
+        $booking->status = 'paid';
+        $booking->save();
+
+        // Redirect ke halaman konfirmasi dengan pesan sukses
+        return redirect()->route('payment')->with('success', 'Pembayaran berhasil dikonfirmasi!');
     }
 }

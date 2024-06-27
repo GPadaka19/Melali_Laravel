@@ -6,7 +6,6 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\BookingController;
-use App\Models\Destination;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 
@@ -23,15 +22,10 @@ Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actio
 Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
 
-// Destination
-Route::get('/booking/{destination}', function ($destination) {
-    $judulForm = "Form Pemesanan Tiket $destination";
-
-    return view('booking.booking', compact('judulForm'));
-})->name('booking');
-
 // Destination and Booking
 Route::get('/booking/{destination}', [BookingController::class, 'booking'])->name('booking');
 Route::post('/booking', [BookingController::class, 'actionbooking'])->name('actionbooking');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+// Payment
+Route::get('/payment', [BookingController::class, 'payment'])->name('payment');
+Route::post('/payment/action', [BookingController::class, 'actionPayment'])->name('payment.action');
