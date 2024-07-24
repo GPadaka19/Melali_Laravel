@@ -29,7 +29,7 @@ class Booking extends Model
     // Relasi dengan model Destination
     public function destination()
     {
-        return $this->belongsTo(Destination::class,'id_destination');
+        return $this->belongsTo(Destination::class, 'id_destination', 'id_destination');
     }
 
     // Jika Anda ingin mengatur format tanggal

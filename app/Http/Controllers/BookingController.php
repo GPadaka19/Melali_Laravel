@@ -96,12 +96,21 @@ class BookingController extends Controller
     public function myTickets()
     {
         $user = auth()->user();
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Anda harus login terlebih dahulu.');
+        }
+        
         $tickets = Booking::with('destination')
-                          ->where('id_user', $user->id)
+                          ->where('id_user', $user->id_user)
                           ->get();
-
+    
+        if ($tickets->isEmpty()) {
+            return view('ticket.myticket')->with('message', 'Anda tidak punya tiket.');
+        }
+    
         return view('ticket.myticket', compact('tickets'));
     }
+    
 
     public function index()
     {
