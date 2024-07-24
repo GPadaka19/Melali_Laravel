@@ -77,17 +77,15 @@ class RegisterController extends Controller
         if ($keyCheck) {
             $user = User::where('verify_key', $verify_key)->first();
             $user->active = 1;
-            $user->email_verified_at = now();
+            $user->email_verified_at =  Carbon::now();
             $user->save();
 
-            // Redirect to login after 5 seconds
             $script = '<script>';
             $script .= 'setTimeout(function() { window.location.href = "'.route('login').'"; }, 5000);';
             $script .= '</script>';
 
-            // Check if user is active and set email_verified_at if so
             if ($user->active == 1) {
-                $user->email_verified_at = now();
+                $user->email_verified_at = Carbon::now();
                 $user->save();
             }
 
@@ -99,14 +97,13 @@ class RegisterController extends Controller
 
     protected function redirectPath()
 {
-    return '/home'; // Change this to your desired redirect path
+    return '/home';
 }
 
     protected function registered(Request $request, $user)
     {
-        // Check if user is active and set email_verified_at if so
         if ($user->active == 1) {
-            $user->email_verified_at = now();
+            $user->email_verified_at = Carbon::now();
             $user->save();
         }
 

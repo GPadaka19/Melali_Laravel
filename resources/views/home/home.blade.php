@@ -36,6 +36,7 @@
 			<li><a href="#about">About</a></li>
 			<li><a href="#destinations">Destinations</a></li>
 			<li><a href="#testimonial">Testimonial</a></li>
+			<li><a href="{{ route('mytickets') }}">My Ticket</a></li>
 		</ul>
 
 		<div class="h-right">
@@ -43,7 +44,7 @@
 				<span style="margin-right: 5px;">Log Out</span>
 				<img src="img/logout.png" style="width: 16px; height: 19px;">
 			</a>
-			<div class="bx bx-menu" id="menu-icon">    
+			<div class="bx bx-menu" id="menu-icon">
 			</div>
 		</div>
 	</header>
@@ -70,17 +71,17 @@
 		<div class="category-content">
 			<div class="row">
 				<img src="img/row1.png">
-				<h4>Alam</h4>
+				<h4>Nature</h4>
 			</div>
 
 			<div class="row">
 				<img src="img/row2.png">
-				<h4> Sejarah</h4>
+				<h4> History</h4>
 			</div>
 
 			<div class="row">
 				<img src="img/row3.png">
-				<h4>Kebun Binatang</h4>
+				<h4>Flora & Fauna</h4>
 			</div>
 
 		</div>
@@ -156,7 +157,7 @@
 		</div>
 
 		<div class="testimonial-text">
-			<h2>Testimoni pelanggan kami:</h2>
+			<h2>TestiMONEY:</h2>
 			<div class="tst-in">
 				<p>Melali helped me a lot in finding the best place for our first outdoor adventure trip. They responded very quickly and gave me a detailed account of the place's history. As well as it's the best features.</p>
 				<div class="tst-star">
@@ -170,7 +171,7 @@
 				<div class="tst-main">
 					<div class="tst-text">
 						<h4>Werner Vogels</h4>
-						<h6>Enterpreneur</h6>
+						<h6>CTO of Amazon.com</h6>
 					</div>
 
 					<div class="tst-icon">

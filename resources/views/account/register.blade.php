@@ -33,7 +33,7 @@
 </head>
 <body class="bg-bgCustom min-h-screen flex flex-col items-center justify-center">
     <div class="flex flex-col items-center mb-6">
-        <a href="index.html" class="flex items-center text-2xl font-semibold text-gray-900 dark:text-white">
+        <a href="{{ route('home') }}" class="flex items-center text-2xl font-semibold text-gray-900 dark:text-white">
         <img src="img/logo.png" alt="logo" style="width: 199px; height: 66px; margin-top: 20px; margin-right: 10px;">
         </a>
     </div>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Destination;
+use Carbon\Carbon;
 
 class BookingController extends Controller
 {
@@ -90,4 +92,21 @@ class BookingController extends Controller
         // Redirect ke halaman konfirmasi dengan pesan sukses
         return redirect()->route('payment')->with('success', 'Pembayaran berhasil dikonfirmasi!');
     }
+
+    public function myTickets()
+    {
+        $user = auth()->user();
+        $tickets = Booking::with('destination')
+                          ->where('id_user', $user->id)
+                          ->get();
+
+        return view('ticket.myticket', compact('tickets'));
+    }
+
+    public function index()
+    {
+        $bookings = Booking::all(); // Ambil semua data dari tabel bookings
+        return view('ticket.myticket', compact('bookings'));
+    }
+    
 }
