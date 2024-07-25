@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Tickets</title>
-    <link href="{{ asset('css/home.css') }}" rel="stylesheet" type="text/css" >
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto mt-8 max-w-lg rounded-lg bg-white p-6 shadow-lg">
